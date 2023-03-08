@@ -18,17 +18,18 @@ import static cz.los.service.UserService.USER_SERVICE;
 
 public class UserServlet extends HttpServlet {
 
+    protected UserService userService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        ServletContext servletContext = config.getServletContext();
+        userService = (UserService) servletContext.getAttribute(USER_SERVICE);
+    }
+
     @NoArgsConstructor
     @WebServlet(name = "GetUserServlet", value = "/users/*")
-    public static class GetUserServlet extends HttpServlet {
-        private UserService userService;
-
-        @Override
-        public void init(ServletConfig config) throws ServletException {
-            super.init(config);
-            ServletContext servletContext = config.getServletContext();
-            userService = (UserService) servletContext.getAttribute(USER_SERVICE);
-        }
+    public static class GetUserServlet extends UserServlet {
 
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,22 +71,14 @@ public class UserServlet extends HttpServlet {
 
     @NoArgsConstructor
     @WebServlet(name = "PostUserServlet", value = "/createUser")
-    public static class PostUserServlet extends HttpServlet {
-
-        private UserService userService;
-
-        @Override
-        public void init(ServletConfig config) throws ServletException {
-            super.init(config);
-            ServletContext servletContext = config.getServletContext();
-            userService = (UserService) servletContext.getAttribute(USER_SERVICE);
-        }
+    public static class PostUserServlet extends UserServlet {
 
         @Override
         public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(request.getReader());
-            userService.createUser(jsonNode.get("name").textValue());
+            String newUser = userService.createUser(request.getParameter("name"));
+            response.setStatus(HttpServletResponse.SC_CREATED);
+            response.setContentType("application/json");
+            response.getWriter().write(newUser);
             response.setStatus(HttpServletResponse.SC_CREATED);
         }
     }

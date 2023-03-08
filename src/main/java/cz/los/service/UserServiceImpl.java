@@ -24,9 +24,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean createUser(String name) {
+    public String createUser(String name) {
         User user = new User(name);
-        return userDao.saveUser(user);
+        userDao.saveUser(user);
+        return toJson(user);
     }
 
     @Override
