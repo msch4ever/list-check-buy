@@ -1,0 +1,20 @@
+package cz.los.service;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UserService {
+
+    String USER_SERVICE = "USER_SERVICE";
+
+    Optional<String> getUserById(long id);
+
+    boolean createUser(String name);
+
+    boolean deleteUserById(long id);
+
+    boolean updateUser(long id, String newName);
+
+    List<String> getAllUsers();
+
+}
