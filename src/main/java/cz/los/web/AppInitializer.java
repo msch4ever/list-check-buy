@@ -1,7 +1,7 @@
 package cz.los.web;
 
 import cz.los.dal.UserDao;
-import cz.los.dal.UserDaoInMem;
+import cz.los.dal.mem.UserDaoInMem;
 import cz.los.persistance.DB;
 import cz.los.service.UserService;
 import cz.los.service.UserServiceImpl;

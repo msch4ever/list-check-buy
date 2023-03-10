@@ -7,11 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class User {
+public class User implements Entity {
 
-    private static volatile long sequence = 0;
     private final long id;
-
     private String name;
 
     public User(String name) {
@@ -19,16 +17,12 @@ public class User {
         this.id = generateId();
     }
 
-    private User(User user) {
-        this.id = user.getId();
-        this.name = user.getName();
+    private User(User other) {
+        this.id = other.getId();
+        this.name = other.getName();
     }
 
-    private static synchronized long generateId() {
-        sequence++;
-        return sequence;
-    }
-
+    @Override
     public User copy() {
         return new User(this);
     }

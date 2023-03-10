@@ -1,7 +1,5 @@
 package cz.los.service;
 
-import cz.los.model.User;
-
 import java.util.List;
 import java.util.Optional;
 
