@@ -4,7 +4,9 @@ import cz.los.dal.ItemDao;
 import cz.los.model.Item;
 import cz.los.persistance.DB;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ItemDaoMem extends BaseDaoInMem<Item> implements ItemDao {
 
@@ -12,6 +14,13 @@ public class ItemDaoMem extends BaseDaoInMem<Item> implements ItemDao {
 
     public ItemDaoMem(DB db) {
         this.db = db;
+    }
+
+    @Override
+    public List<Item> getAllByBucketId(long bucketId) {
+        return getAll().stream()
+                .filter(it -> it.getBucketId() == bucketId)
+                .collect(Collectors.toList());
     }
 
     @Override

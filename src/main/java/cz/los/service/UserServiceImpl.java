@@ -19,32 +19,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<String> getUserById(long id) {
-        Optional<User> userOptional = userDao.getUserById(id);
+        Optional<User> userOptional = userDao.getById(id);
         return userOptional.map(this::toJson);
     }
 
     @Override
-    public String createUser(String name) {
+    public User createUser(String name) {
         User user = new User(name);
-        userDao.saveUser(user);
-        return toJson(user);
+        userDao.save(user);
+        return user;
     }
 
     @Override
     public boolean deleteUserById(long id) {
-        return userDao.deleteUserById(id);
+        return userDao.deleteById(id);
     }
 
     @Override
     public boolean updateUser(long id, String newName) {
-        Optional<User> userOptional = userDao.getUserById(id);
+        Optional<User> userOptional = userDao.getById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (user.getName().equals(newName)) {
                 return false;
             }
             user.setName(newName);
-            userDao.updateUser(user);
+            userDao.update(user);
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<String> getAllUsers() {
-        return userDao.getAllUsers().stream()
+        return userDao.getAll().stream()
                 .map(this::toJson)
                 .collect(Collectors.toList());
     }

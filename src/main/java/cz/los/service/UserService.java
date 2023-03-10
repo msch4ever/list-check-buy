@@ -1,5 +1,7 @@
 package cz.los.service;
 
+import cz.los.model.User;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +11,7 @@ public interface UserService {
 
     Optional<String> getUserById(long id);
 
-    String createUser(String name);
+    User createUser(String name);
 
     boolean deleteUserById(long id);
 

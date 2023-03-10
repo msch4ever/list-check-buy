@@ -1,11 +1,13 @@
 package cz.los.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 
 @Getter
+@Setter
 public class Bucket implements Entity {
 
     private final long id;
