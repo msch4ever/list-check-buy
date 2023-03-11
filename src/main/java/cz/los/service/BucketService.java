@@ -21,4 +21,6 @@ public interface BucketService {
 
     List<String> getAllBucketsByUserId(long userId);
 
+    String toJson(Bucket bucket);
+
 }

@@ -5,7 +5,9 @@ import cz.los.model.Item;
 import cz.los.persistance.DB;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class ItemDaoInMem extends BaseDaoInMem<Item> implements ItemDao {
@@ -14,6 +16,13 @@ public class ItemDaoInMem extends BaseDaoInMem<Item> implements ItemDao {
 
     public ItemDaoInMem(DB db) {
         this.db = db;
+    }
+
+    @Override
+    public List<Item> getAllByBucketId(long bucketId) {
+        return getAll().stream()
+                .filter(it -> it.getBucketId() == bucketId)
+                .collect(Collectors.toList());
     }
 
     @Override

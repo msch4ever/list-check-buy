@@ -74,7 +74,7 @@ public class BucketServiceImpl implements BucketService {
     }
 
     @SneakyThrows
-    private String toJson(Bucket Bucket) {
+    public String toJson(Bucket Bucket) {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(Bucket);
     }

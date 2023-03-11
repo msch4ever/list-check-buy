@@ -18,4 +18,6 @@ public interface ItemService {
     boolean updateItem(long id, String newName, String note, int qty);
 
     List<String> getAllItemsByBucketId(long bucketId);
+
+    String toJson(Item item);
 }

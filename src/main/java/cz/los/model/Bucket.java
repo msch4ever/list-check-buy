@@ -2,12 +2,14 @@ package cz.los.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 
 @Getter
 @Setter
+@ToString(exclude = "items")
 public class Bucket implements Entity {
 
     private final long id;

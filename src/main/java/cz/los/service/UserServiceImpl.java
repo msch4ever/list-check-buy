@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @SneakyThrows
-    private String toJson(User user) {
+    public String toJson(User user) {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(user);
     }

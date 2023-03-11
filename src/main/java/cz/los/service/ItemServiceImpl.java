@@ -62,7 +62,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @SneakyThrows
-    private String toJson(Item item) {
+    public String toJson(Item item) {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(item);
     }

@@ -2,9 +2,11 @@ package cz.los.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Item implements Entity {
 
     private final long id;

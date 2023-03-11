@@ -35,7 +35,7 @@ public abstract class BaseDaoInMem<T extends Entity> implements BaseDao<T> {
             throw new EntityAlreadyExistsException();
         }
         writeLookup(entity.getId(), entity);
-        log.info("User:{} has been saved.", entity);
+        log.info("{}:{} has been saved.", getClassName(), entity);
         return true;
     }
 
