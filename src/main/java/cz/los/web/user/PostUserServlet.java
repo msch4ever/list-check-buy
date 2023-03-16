@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NoArgsConstructor;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @WebServlet(name = "PostUserServlet", value = "/createUser")
